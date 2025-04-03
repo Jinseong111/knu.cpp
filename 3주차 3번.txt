@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Account {
+private:
+    string name;  
+    int id;       
+    int balance;   
+
+public:
+    
+    Account(string owner, int account_id, int initial_balance) {
+        name = owner;
+        id = account_id;
+        balance = initial_balance;
+    }
+
+    
+    string getOwner() const {
+        return name;
+    }
+
+    
+    void deposit(int amount) {
+        balance += amount;
+    }
+
+   
+    int withdraw(int amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            return amount;
+        }
+       
+    }
+
+    
+    int inquiry() const {
+        return balance;
+    }
+};
+
+int main() {
+    Account a("kitae", 1, 5000);  
+    a.deposit(50000);  
+    cout << a.getOwner() << "의 잔액은 " << a.inquiry() << endl;  
+
+    int money = a.withdraw(20000);  
+    cout << a.getOwner() << "의 잔액은 " << a.inquiry() << endl;  
+
+    return 0;
+}

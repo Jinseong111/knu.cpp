@@ -1,1 +1,58 @@
-{\rtf1}
+#include <iostream>
+using namespace std;
+
+class Operation {
+protected:
+    int a, b;
+public:
+    void setValue(int x, int y) { a = x; b = y; }
+    virtual int calculate() = 0; 
+};
+
+
+class Add : public Operation {
+public:
+    int calculate() override { return a + b; }
+};
+
+
+class Sub : public Operation {
+public:
+    int calculate() override { return a - b; }
+};
+
+
+class Mul : public Operation {
+public:
+    int calculate() override { return a * b; }
+};
+
+
+class Div : public Operation {
+public:
+    int calculate() override { return b != 0 ? a / b : 0; }
+};
+
+int main() {
+    while (true) {
+        int x, y;
+        char op;
+        cout << "두 정수와 연산자를 입력하세요>> ";
+        cin >> x >> y >> op;
+
+        Operation* oper;
+        Add add; Sub sub; Mul mul; Div div;
+
+        switch (op) {
+        case '+': oper = &add; break;
+        case '-': oper = &sub; break;
+        case '*': oper = &mul; break;
+        case '/': oper = &div; break;
+        default: cout << "잘못된 연산자입니다.\n"; continue;
+        }
+
+        oper->setValue(x, y);
+        cout << oper->calculate() << endl;
+    }
+    return 0;
+}

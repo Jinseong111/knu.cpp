@@ -1,1 +1,38 @@
-{\rtf1}
+#include <iostream>
+#include <cstdlib>  
+using namespace std;
+
+class Integer {
+private:
+    int value;  
+public:
+    
+    inline Integer(int val) { value = val; }
+
+    
+    inline Integer(const char* str) { value = atoi(str); }
+
+    
+    inline int get() { return value; }
+
+   
+    inline void set(int val) { value = val; }
+
+    
+    inline bool isEven() { return value % 2 == 0; }
+};
+
+int main() {
+    Integer n(30);
+    cout << n.get() << ' ';  
+
+    n.set(50);
+    cout << n.get() << ' ';  
+
+    Integer m("300");
+    cout << m.get() << ' ';  
+
+    cout << m.isEven();  
+
+    return 0;
+}
